@@ -99,4 +99,4 @@ client.on('interactionCreate', async interaction => {
 
 });
 
-client.login(process.env.TOKEN);
+client.login("MTEzNTMxNjM2Nzc4MDg3NjQ5MQ.Gqc60y.2M9Ki2oeeaahPykoJWcDC1auGQ3V4-9gIIBhlE");
