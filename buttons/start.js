@@ -1,6 +1,6 @@
 var { userCodes, cancel } = require('../index')
 const Discord = require('discord.js');
-const { ActionRowBuilder, ButtonBuilder, ButtonStyle } = require('discord.js');
+const { ActionRowBuilder, ButtonBuilder, ButtonStyle, AttachmentBuilder } = require('discord.js');
 const colors = require('colors')
 const axios = require('axios')
 
@@ -25,10 +25,16 @@ let start = async interaction => {
 
     await interaction.update({ content: `**Je t\'ai envoyé un message en MP, ${interaction.user}**`, components: [] })
 
+    let image = new AttachmentBuilder('../discord-bot-exolink/exoscreen.png', {
+      name: 'exoscreen.png',
+      description: 'help screen'
+    })
+
     let sentMessage = await interaction.user.send({ 
       content: 
-      `**${interaction.user} Très bien, voici ton code secret: ${fancyCode}** \n **Tu dois le rentrer dans Exoracer ( settings -> account / manage -> other )** \n **Mets-le dans la deuxième partie et clique sur "link account".**`, 
-      components: [row] 
+      `**${interaction.user} Très bien, voici ton code secret: ${fancyCode}** \n **Tu dois le rentrer dans Exoracer ( settings -> account / manage -> other )** \n **Mets-le dans la catégorie Exostats et clique sur "link account".**`, 
+      components: [row],
+      files: [image]
     });
 
     userCodes.set(interaction.user.id, code)

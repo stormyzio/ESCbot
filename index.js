@@ -1,5 +1,5 @@
 const Discord = require('discord.js');
-const { ActionRowBuilder, ButtonBuilder, ButtonStyle } = require('discord.js');
+const { ActionRowBuilder, ButtonBuilder, ButtonStyle, AttachmentBuilder } = require('discord.js');
 const colors = require('colors')
 const axios = require('axios')
 
@@ -7,7 +7,9 @@ const client = new Discord.Client({ intents: [
   Discord.GatewayIntentBits.Guilds, 
   Discord.GatewayIntentBits.GuildMessages,
   Discord.GatewayIntentBits.MessageContent,
-  Discord.GatewayIntentBits.DirectMessages
+  Discord.GatewayIntentBits.DirectMessages,
+  Discord.GatewayIntentBits.GuildPresences,
+  Discord.GatewayIntentBits.GuildMembers
 ] });
 
 require('dotenv').config()
@@ -69,12 +71,40 @@ const did = require('./buttons/did')
 
 client.on('messageCreate', async message => {
   if(!message.author.bot) {
-    if(message.content.startsWith(prefix)) {
-      message.content === prefix + 'link' ? link(message) : 
-      message.content.startsWith(prefix + 'id ') ? endID(message) : () => {}
+    if(message.content.toLowerCase().startsWith(prefix)) {
+      console.log('yes')
+      message.content.toLowerCase() === prefix + 'link' ? link(message) : 
+      message.content.toLowerCase() === prefix + 'exostats' ? message.reply('**Exostats:** \n\n:link: **Main Page: https://exostats.nl** \n:link: **Player Score: https://exostats.nl/rank/playerscore** \n:link: **EWC: https://exostats.nl/ewc**') : 
+      message.content.toLowerCase().startsWith(prefix + 'id ') ? endID(message) :
+      message.content.toLowerCase() === prefix + 'm' ? createMembersRoom(message) : () => {}
+    } else {
+      if(message.content.toLowerCase().includes('greg')) {
+        message.reply('wsh tu m\'veux quoi')
+      }
     }
   }
 })
+
+async function createMembersRoom(message) {
+  console.log('/members')
+  let guild = message.guild
+  let categorie = guild.channels.cache.get('1144209888885616670')
+
+  let users = await guild.members.fetch()
+  let members = Array.from(users.filter(m => m._roles.includes('1065755940734910524'))).length
+
+  let channel = await guild.channels.create({
+    name: 'Members: ' + members,
+    type: Discord.ChannelType.GuildVoice,
+    parent: categorie,
+    permissionOverwrites: [
+      {
+          id: message.guild.roles.everyone, // Rôle @everyone
+          deny: [Discord.PermissionsBitField.Flags.Connect]
+      }
+  ]
+  })
+}
 
 client.on('interactionCreate', async interaction => {
   if (!interaction.isButton()) return;
@@ -85,13 +115,18 @@ client.on('interactionCreate', async interaction => {
 
   } else if (interaction.customId === 'cancel') { // Cancel
 
-    await interaction.update({ content: '**Ok, on s\'arrête là.**', components: [] });
+    await interaction.update({ content: '**Ok, on s\'arrête là.**', components: [], files: [] });
 
   } else if(interaction.customId === 'did') { // Added code to Exoracer
 
     did(interaction)
 
   } else if(interaction.customId === 'itsme') { // end
+
+    let image = new AttachmentBuilder('../discord-bot-exolink/exoscreen.png', {
+      name: 'exoscreen.png',
+      description: 'help screen'
+    })
 
     await interaction.update({ content: `${interaction.user}, \n **Dans un salon du serveur discord, écris:** \n \n e/id [ton identifiant exoracer ] \n \n **Exemple:** \n e/id AJizoLshdkJzijNndlOe \n \n *Tu peux trouver ton identifiant en bas des settings. ( Player ID )*`, components: [] });
 

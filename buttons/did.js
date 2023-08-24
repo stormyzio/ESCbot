@@ -11,8 +11,9 @@ let did = async interaction => {
   })
 
   if(res2.data.includes('expired')) {
+    console.log('error')
     await interaction.update({
-      content: '**Il y a eu une erreur. Tu as peut-etre oublié de mettre le code dans Exoracer. \n Si tu es sur de l\'avoir mis, contacte "myzh" sur Discord.**', components: []
+      content: '**Il y a eu une erreur. Tu as peut-etre oublié de mettre le code dans Exoracer. \n Si tu es sur de l\'avoir mis, contacte "myzh" sur Discord.**', components: [], files: []
     })
   } else {
     let session = res2.data.split('=')[1]
@@ -46,7 +47,7 @@ let did = async interaction => {
     let row = new ActionRowBuilder()
       .addComponents(cancel, confirm)
 
-    await interaction.update({ content: `${interaction.user}, **Es-tu ${username} sur Exoracer ?**`, components: [row] });
+    await interaction.update({ content: `${interaction.user}, **Es-tu ${username} sur Exoracer ?**`, components: [row], files: [] });
   }
 }
 
