@@ -1,3 +1,4 @@
 .env
+.gitattributes
 
 /node_modules
