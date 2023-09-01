@@ -1,6 +1,8 @@
 # Welcome to ESCBot Template! 🤖
 ## The Simplest Slash Commands Discord Bot Template!
 
+**Version: 1.1**
+
 ESCBot is an open-source template for a straightforward Discord bot. Install it, add your commands, and run the bot! You'll need to have a bot set up on the [Discord Developer Portal](https://discord.com/developers/applications) beforehand.
 
 **Maintained by [@stormyzio](https://github.com/stormyzio) (me) 😎**
