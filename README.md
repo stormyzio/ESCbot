@@ -1,3 +1,5 @@
+# EDIT: BOT IS NOT AVALAIBLE AT THE TIME. PLEASE WAIT FEW HOURS
+
 # Welcome to ESCBot Template! 🤖
 ## The Simplest Slash Commands Discord Bot Template!
 
