@@ -1,18 +1,19 @@
 {
-  "name": "discord-bot-exolink",
-  "version": "1.0.0",
-  "description": "",
+  "name": "escbot-template",
+  "version": "1.2",
+  "description": "This is the template for ESCBot!",
   "main": "index.js",
   "scripts": {
-    "start": "node index"
+    "start": "node index.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Stormyz",
   "license": "ISC",
   "dependencies": {
     "axios": "^1.4.0",
     "colors": "^1.4.0",
     "discord.js": "^14.11.0",
     "dotenv": "^16.3.1"
-  }
+  },
+  "type": "module"
 }

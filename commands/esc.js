@@ -1,14 +1,14 @@
-const { SlashCommandBuilder, ButtonBuilder, ActionRowBuilder, ButtonStyle } = require('discord.js');
+import { SlashCommandBuilder, ButtonBuilder, ActionRowBuilder, ButtonStyle } from 'discord.js';
 
-module.exports = {
+export default {
 	data: new SlashCommandBuilder()
-		.setName('pingo')
+		.setName('esc')
 		.setDescription('Reply pong!'),
 
 	async execute(interaction) {
 
 		let btn1 = new ButtonBuilder()
-			.setCustomId('templateBtnId')
+			.setCustomId('TemplateButtonHandler')
 			.setLabel('Template Button')
 			.setStyle(ButtonStyle.Primary);
 

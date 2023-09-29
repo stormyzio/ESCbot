@@ -1,15 +1,15 @@
-const { ModalBuilder, TextInputBuilder, TextInputStyle, ActionRowBuilder } = require('discord.js')
+import { ModalBuilder, TextInputBuilder, TextInputStyle, ActionRowBuilder } from 'discord.js'
 
-module.exports = {
+export default {
   data: {
-    name: 'template Btn Interaction',
-    description: 'The button template',
-    id: 'templateBtnId'
+    name: 'Template Button handler',
+    description: 'This is the button handler template.',
+    id: 'TemplateButtonHandler' // This id must be the same as the customId of the button
   },
   async execute(interaction) {
 
     let modal = new ModalBuilder()
-			.setCustomId('templateModalId')
+			.setCustomId('TemplateModalHandler')
 			.setTitle('Modal Template');
 
 		let favoriteColorInput = new TextInputBuilder()
